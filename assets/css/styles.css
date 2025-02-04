@@ -1,0 +1,61 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  header {
+    background: #333;
+    color: white;
+    padding: 1rem 2rem;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+  }
+  
+  .nav-links li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .hero {
+    text-align: center;
+    background: #f4f4f4;
+    padding: 2rem 1rem;
+  }
+  
+  .features {
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem;
+    background: #eaeaea;
+  }
+  
+  .feature {
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  /* Contact Form */
+  form {
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  form input, form textarea, form button {
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+  
+  /* Media Queries */
+  @media screen and (max-width: 768px) {
+    .features {
+      flex-direction: column;
+    }
+  }
+  
