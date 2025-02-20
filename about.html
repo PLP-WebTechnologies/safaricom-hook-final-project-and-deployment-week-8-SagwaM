@@ -1,32 +1,337 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About | My Website</title>
-  <link rel="stylesheet" href="assets/css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --link-color: #007BFF;
+            --btn-bg: #007BFF;
+            --btn-text: #ffffff;
+            --card-bg: #f4f4f4;
+            --active-bg: #e0e0e0;
+            --hover-bg: #d0d0d0;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --text-color: #ffffff;
+            --link-color: #4DA8DA;
+            --btn-bg: #4DA8DA;
+            --btn-text: #121212;
+            --card-bg: #1e1e1e;
+            --active-bg: #444444;
+            --hover-bg: #333333;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #ddd;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: fixed; /* Keeps navbar fixed at the top */
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000; /* Ensures it stays above other content */
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        header a {
+            color: var(--link-color);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        header a:hover {
+            background-color: var(--link-color);
+            color: var(--btn-text);
+        }
+
+        header a.active {
+            background-color: var(--active-bg);
+            color: var(--text-color);
+        }
+
+        section {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .introduction {
+            background: url('about-bg.jpg') no-repeat center center/cover;
+            color: var(--btn-text);
+            padding: 5rem 2rem;
+            animation: fadeIn 2s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .history, .team, .vision-mission, .timeline-section {
+            background: var(--card-bg);
+            color: var(--text-color);
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .history-cards {
+            display: flex;
+            overflow: hidden;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .history-card {
+            background: var(--card-bg);
+            color: var(--text-color);
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 200px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .history-card:hover {
+            transform: scale(1.05);
+            background-color: var(--hover-bg);
+        }
+
+        .arrow {
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+
+        .team-members {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .team-member {
+            background: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            width: 200px;
+            text-align: center;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .team-member:hover {
+            transform: scale(1.05);
+            background-color: var(--hover-bg);
+        }
+
+        .timeline-section {
+            position: relative;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+            list-style: none;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--link-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 1rem 2rem;
+            box-sizing: border-box;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-item::before {
+            content: '\2022';
+            position: absolute;
+            top: 15px;
+            left: -10px;
+            font-size: 1.5rem;
+            color: var(--link-color);
+        }
+
+        .theme-toggle, #back-to-top {
+            position: fixed;
+            right: 20px;
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        .theme-toggle {
+            bottom: 40px;
+        }
+
+        #back-to-top {
+            bottom: 80px;
+            display: none;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/164459a379.js" crossorigin="anonymous"></script>
 </head>
-<body>
-  <header>
-    <nav>
-      <div class="logo">
-        <img src="assets/images/logo.png" alt="Logo">
-      </div>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-  <main>
-    <section class="about">
-      <h1>About Us</h1>
-      <p>We are passionate about creating amazing web experiences.</p>
+<body data-theme="light">
+    <header>
+        <h1>My Website</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html" class="active">About</a>
+            <a href="blog.html">Blogs</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <section class="introduction">
+        <h1>About Us</h1>
+        <p>Welcome to our website! We are committed to delivering exceptional solutions that meet your needs. Here, you can learn about who we are, our journey, and what drives us to excel.</p>
     </section>
-  </main>
-  <footer>
-    <p>&copy; 2025 My Website. All Rights Reserved.</p>
-  </footer>
+
+    <section class="history">
+        <h2>Our Story</h2>
+        <button class="arrow" id="prev">&#8592;</button>
+        <div class="history-cards" id="history-cards">
+            <div class="history-card">
+                <strong>2015</strong>
+                <p>First major project completion, setting the foundation for future growth.</p>
+            </div>
+            <div class="history-card">
+                <strong>2018</strong>
+                <p>Expansion to new markets, broadening our impact and reach.</p>
+            </div>
+            <div class="history-card">
+                <strong>2021</strong>
+                <p>Recognized for excellence in technological innovation and sustainability.</p>
+            </div>
+        </div>
+        <button class="arrow" id="next">&#8594;</button>
+    </section>
+
+    <section class="team">
+        <h2>Meet Our Team</h2>
+        <div class="team-members">
+            <div class="team-member">
+                <img src="team-member1.jpg" alt="Team Member 1">
+                <h3>John Doe</h3>
+                <p>CEO & Founder</p>
+            </div>
+            <div class="team-member">
+                <img src="team-member2.jpg" alt="Team Member 2">
+                <h3>Jane Smith</h3>
+                <p>Chief Technical Officer</p>
+            </div>
+            <div class="team-member">
+                <img src="team-member3.jpg" alt="Team Member 3">
+                <h3>Emily Johnson</h3>
+                <p>Marketing Director</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="timeline-section">
+        <h2>Our Journey</h2>
+        <ul class="timeline">
+            <li class="timeline-item">Founded with a mission to innovate and inspire.</li>
+            <li class="timeline-item">Achieved our first major milestone within 2 years.</li>
+            <li class="timeline-item">Expanded globally, making a difference worldwide.</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 My Website. All rights reserved.</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+        <div class="footer-social">
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
+
+    <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-adjust"></i></button>
+    <button id="back-to-top" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+
+    <script>
+        function toggleTheme() {
+            const currentTheme = document.body.getAttribute('data-theme');
+            document.body.setAttribute('data-theme', currentTheme === 'dark' ? 'light' : 'dark');
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const backToTopButton = document.getElementById('back-to-top');
+            backToTopButton.style.display = window.scrollY > 300 ? 'block' : 'none';
+        });
+
+        const cardsContainer = document.getElementById('history-cards');
+        const prevBtn = document.getElementById('prev');
+        const nextBtn = document.getElementById('next');
+
+        prevBtn.addEventListener('click', () => {
+            cardsContainer.scrollBy({ left: -300, behavior: 'smooth' });
+        });
+
+        nextBtn.addEventListener('click', () => {
+            cardsContainer.scrollBy({ left: 300, behavior: 'smooth' });
+        });
+    </script>
 </body>
 </html>

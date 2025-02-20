@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog Page</title>
+  <!-- FontAwesome for icons -->
+  <script src="https://kit.fontawesome.com/164459a379.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body data-theme="light">
+  <!-- Fixed Header -->
+  <header>
+    <h1>My Website</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="blog.html" class="active">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Filters Section: Search + Categories (placed below the navbar) -->
+  <div class="filters">
+    <div class="search-box">
+      <input type="text" placeholder="Search posts..." id="searchInput" />
+    </div>
+    <div class="categories">
+      <button class="category-btn active" data-category="all">All</button>
+      <button class="category-btn" data-category="Web Design">Web Design</button>
+      <button class="category-btn" data-category="Development">Development</button>
+      <button class="category-btn" data-category="SEO">SEO</button>
+    </div>
+  </div>
+
+  <!-- Main Blog Posts Section -->
+  <main class="blog-page">
+    <section class="posts">
+      <!-- Example Blog Card 1 -->
+      <article class="blog-card" data-category="Web Design">
+        <img src="post1.jpg" alt="Blog Post 1" />
+        <div class="blog-content">
+          <h2>Design Trends in 2025</h2>
+          <p class="meta">By John Doe | Jan 1, 2025 | Web Design</p>
+          <p class="excerpt">
+            Explore the latest design trends that are shaping the web industry in 2025...
+          </p>
+          <!-- Clicking this card takes you to the blog detail page for this post -->
+          <a href="blog-detail.html?id=1" class="read-more">Read More</a>
+        </div>
+      </article>
+
+      <!-- Example Blog Card 2 -->
+      <article class="blog-card" data-category="Development">
+        <img src="post2.jpg" alt="Blog Post 2" />
+        <div class="blog-content">
+          <h2>Modern Development Techniques</h2>
+          <p class="meta">By Jane Smith | Feb 15, 2025 | Development</p>
+          <p class="excerpt">
+            Learn about modern development techniques using the latest technologies...
+          </p>
+          <a href="blog-detail.html?id=2" class="read-more">Read More</a>
+        </div>
+      </article>
+
+      <!-- Example Blog Card 3 -->
+      <article class="blog-card" data-category="SEO">
+        <img src="post3.jpg" alt="Blog Post 3" />
+        <div class="blog-content">
+          <h2>SEO Optimization in 2025</h2>
+          <p class="meta">By Mark Brown | Mar 20, 2025 | SEO</p>
+          <p class="excerpt">
+            Discover the best practices in SEO optimization to rank higher in search results...
+          </p>
+          <a href="blog-detail.html?id=3" class="read-more">Read More</a>
+        </div>
+      </article>
+
+      <!-- More blog cards... -->
+    </section>
+  </main>
+
+  <!-- Footer with Social Icons -->
+  <footer>
+    <p>&copy; 2025 My Website. All rights reserved.</p>
+    <div class="footer-social">
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    </div>
+  </footer>
+
+  <!-- Back to Top and Theme Toggle Buttons (Fixed at bottom right) -->
+  <button id="back-to-top" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+  <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-adjust"></i></button>
+
+  <script src="script.js"></script>
+</body>
+</html>
